@@ -80,7 +80,7 @@ public class SiparisDao implements  ICrud<Siparis>{
         List<Object[]> siparisList = null;
         try {
             EntityManager entityManager = HibernateUtil.getSessionFactory().createEntityManager();
-            String query = "SELECT m.id, SUM(musteri_id) FROM siparis as s\n" +
+            String query = "SELECT m.id, count(musteri_id) FROM siparis as s\n" +
                     "inner join musteri as m on s.musteri_id=m.id\n" +
                     "GROUP BY m.id";
             siparisList = entityManager.createNativeQuery(query).getResultList();
